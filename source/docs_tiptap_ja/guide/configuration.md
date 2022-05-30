@@ -5,11 +5,13 @@ tableOfContents: true
 # Configuration
 
 ## Introduction
+
 For most cases it’s enough to say where Tiptap should be rendered (`element`), what functionalities you want to enable (`extensions`) and what the initial document should be (`content`).
 
 A few more things can be configured though. Let’s look at a fully configured editor example.
 
 ## Configure the editor
+
 To add your configuration, pass [an object with settings](/api/editor) to the `Editor` class, like shown here:
 
 ```js
@@ -42,6 +44,7 @@ This will do the following:
 6. disable the loading of [the default CSS](https://github.com/ueberdosis/tiptap/tree/main/packages/core/src/style.ts) (which is not much anyway).
 
 ## Nodes, marks and extensions
+
 Most editing features are bundled as [node](/api/nodes), [mark](/api/marks) or [extension](/api/extensions). Import what you need and pass them as an array to the editor.
 
 Here is the minimal setup with only three extensions:
@@ -63,6 +66,7 @@ new Editor({
 ```
 
 ### Configure extensions
+
 Most extensions can be configured. Add a `.configure()` and pass an object to it.
 
 The following example will disable the default heading levels 4, 5 and 6 and just allow 1, 2 and 3:
@@ -90,6 +94,7 @@ new Editor({
 Have a look at the documentation of the extension you are using to learn more about their settings.
 
 ### Default extensions
+
 We have bundled a few of the most common extensions into a `StarterKit` extension. Here is how you to use that:
 
 ```js

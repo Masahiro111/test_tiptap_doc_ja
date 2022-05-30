@@ -2,7 +2,7 @@
 tableOfContents: true
 ---
 
-# 序章
+# はじめに
 
 ## Tiptapとは何ですか？
 
