@@ -6,57 +6,57 @@ tableOfContents: true
 
 ## はじめに
 
-tiptap comes very raw, but that’s a good thing. You have full control about the appearance of it.
+<!-- tiptap comes very raw, but that’s a good thing. You have full control about the appearance of it. -->
 
-When we say full control, we mean it. You can (and have to) build a menu on your own. We help you to wire everything up.
+<!-- When we say full control, we mean it. You can (and have to) build a menu on your own. We help you to wire everything up. -->
 
-チップタップは非常に生々しいものですが、それは良いことです。あなたはそれの外観について完全に制御できます。
+Tiptap は非常に生々しいものですが、それは良いことです。あなたはそれの外観について完全に制御できます。
 
 フルコントロールとは、それを意味します。自分でメニューを作成することができます（そして作成する必要があります）。私たちはあなたがすべてを配線するのを手伝います。
 
 ## メニュー
 
-The editor provides a fluent API to trigger commands and add active states. You can use any markup you like. To make the positioning of menus easier, we provide a few utilities and components. Let’s go through the most typical use cases one by one.
+<!-- The editor provides a fluent API to trigger commands and add active states. You can use any markup you like. To make the positioning of menus easier, we provide a few utilities and components. Let’s go through the most typical use cases one by one. -->
 
 エディターは、コマンドをトリガーしてアクティブ状態を追加するための流暢なAPIを提供します。好きなマークアップを使用できます。メニューの配置を簡単にするために、いくつかのユーティリティとコンポーネントを提供しています。最も一般的なユースケースを1つずつ見ていきましょう。
 
 ### 固定メニュー
 
-A fixed menu, for example on top of the editor, can be anything. We don’t provide such menu. Just add a `<div>` with a few `<button>`s. How those buttons can trigger [commands](/api/commands) is [explained below](#actions).
+<!-- A fixed menu, for example on top of the editor, can be anything. We don’t provide such menu. Just add a `<div>` with a few `<button>`s. How those buttons can trigger [commands](/api/commands) is [explained below](#actions). -->
 
-たとえばエディタの上にある固定メニューは、何でもかまいません。そのようなメニューは提供していません。<div>数秒でを追加するだけ<button>です。これらのボタンがコマンドをトリガーする方法については、以下で説明します。
+たとえばエディタの上にある固定メニューは、何でもかまいません。Tiptap 自体は、そのようなメニューは提供していません。数秒で `<button>` を含んだ `<div>` を追加するだけです。これらのボタンが[コマンド](/api/commands) をトリガーする方法については、以下で説明します。
 
 ### バブルメニュー
 
-The [bubble menu](/api/extensions/bubble-menu) appears when selecting text. Markup and styling is totally up to you.
+<!-- The [bubble menu](/api/extensions/bubble-menu) appears when selecting text. Markup and styling is totally up to you. -->
+
+テキストを選択すると、[バブルメニュー](/api/extensions/bubble-menu) が表示されます。マークアップとスタイリングは完全にあなた次第です。
 
 <https://embed.tiptap.dev/preview/Extensions/BubbleMenu?hideSource>
 
-テキストを選択すると、バブルメニューが表示されます。マークアップとスタイリングは完全にあなた次第です。
-
 ### フローティングメニュー
 
-The [floating menu](/api/extensions/floating-menu) appears in empty lines. Markup and styling is totally up to you.
+<!-- The [floating menu](/api/extensions/floating-menu) appears in empty lines. Markup and styling is totally up to you. -->
 
-フローティングメニューが空の行に表示されます。マークアップとスタイリングは完全にあなた次第です。
+[フローティングメニュー](/api/extensions/floating-menu)  が空の行に表示されます。マークアップとスタイリングは完全にあなた次第です。
 
 <https://embed.tiptap.dev/preview/Extensions/FloatingMenu?hideSource>
 
 ### スラッシュコマンド（進行中の作業）
 
-It’s not an official extension yet, but [there’s an experiment you can use to add what we call slash commands](/experiments/commands). It allows you to start a new line with `/` and will bring up a popup to select which node should be added.
+<!-- It’s not an official extension yet, but [there’s an experiment you can use to add what we call slash commands](/experiments/commands). It allows you to start a new line with `/` and will bring up a popup to select which node should be added. -->
 
-これはまだ公式の拡張機能ではありませんが、スラッシュコマンドと呼ばれるものを追加するために使用できる実験があります。これにより、で新しい行を開始でき、/追加するノードを選択するためのポップアップが表示されます。
+これはまだ公式の拡張機能ではありませんが、[スラッシュコマンド](/experiments/commands) と呼ばれるものを追加するために使用できる実験があります。これにより、`/` で新しい行を開始でき、追加するノードを選択するためのポップアップが表示されます。
 
 ## ボタン
 
-Okay, you’ve got your menu. But how do you wire things up?
+<!-- Okay, you’ve got your menu. But how do you wire things up? -->
 
 さて、あなたはあなたのメニューを持っています。しかし、どのように物事を配線しますか？
 
 ### コマンド
 
-エディターが既に実行されていて、最初のボタンを追加したいとします。<button>クリックハンドラー付きのHTMLタグが必要です。設定によっては、次の例のようになります。
+エディターが既に実行されていて、最初のボタンを追加したいとします。`<button>` クリックハンドラー付きのHTMLタグが必要です。設定によっては、次の例のようになります。
 
 ```html
 <button onclick="editor.chain().focus().toggleBold().run()">
@@ -64,25 +64,25 @@ Okay, you’ve got your menu. But how do you wire things up?
 </button>
 ```
 
-Oh, that’s a long command, right? Actually, it’s a [chain of commands](/api/commands#chain-commands). Let’s go through this one by one:
+<!-- Oh, that’s a long command, right? Actually, it’s a [chain of commands](/api/commands#chain-commands). Let’s go through this one by one: -->
 
-ああ、それは長い命令ですよね？実際には、それは一連のコマンドです。これを1つずつ見ていきましょう。
+ああ、それは長い命令ですよね？実際には、それは[一連のコマンド](/api/commands#chain-commands) です。これを1つずつ見ていきましょう。
 
 ```js
 editor.chain().focus().toggleBold().run()
 ```
 
-1. `editor` should be a Tiptap instance,
+<!-- 1. `editor` should be a Tiptap instance,
 2. `chain()` is used to tell the editor you want to execute multiple commands,
 3. `focus()` sets the focus back to the editor,
 4. `toggleBold()` marks the selected text bold, or removes the bold mark from the text selection if it’s already applied and
-5. `run()` will execute the chain.
+5. `run()` will execute the chain. -->
 
-editorTiptapインスタンスである必要があります。
-chain()複数のコマンドを実行することをエディターに通知するために使用されます。
-focus()フォーカスをエディターに戻し、
-toggleBold()選択したテキストを太字でマークするか、すでに適用されている場合はテキスト選択から太字を削除し、
-run()チェーンを実行します。
+1. `editor`は、Tiptapのインスタンスである必要があります。
+2. `chain()`は、複数のコマンドを実行することを Tiptap エディターに通知するために使用されます。
+3. `focus()`は、フォーカスをエディターに戻し、
+4. `toggleBold()`は、選択したテキストを太字でマークするか、すでに適用されている場合はテキスト選択から太字を削除し、
+5. `run()`は、チェーンを実行します。
 
 In other words: This will be a typical **Bold** button for your text editor.
 
