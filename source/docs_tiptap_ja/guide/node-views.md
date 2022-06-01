@@ -2,18 +2,29 @@
 tableOfContents: true
 ---
 
-# Interactive node views
+# インタラクティブノードビュー
 
-## Introduction
+## はじめに
+
 Node views are the best thing since sliced bread, at least if you are a fan of customization (and bread). With node views you can add interactive nodes to your editor. That can literally be everything. If you can write it in JavaScript, you can use it in your editor.
+
+少なくともカスタマイズ（およびパン）が好きな場合は、スライスされたパン以来、ノードビューが最適です。ノードビューを使用すると、インタラクティブノードをエディターに追加できます。それは文字通りすべてである可能性があります。JavaScriptで記述できる場合は、エディターで使用できます。
 
 Node views are amazing to improve the in-editor experience, but can also be used in a read-only instance of Tiptap. They are unrelated to the HTML output by design, so you have full control about the in-editor experience *and* the output.
 
-## Different types of node views
+ノードビューは、エディター内のエクスペリエンスを向上させるのに最適ですが、Tiptapの読み取り専用インスタンスでも使用できます。これらは設計上HTML出力とは無関係であるため、エディター内のエクスペリエンスと出力を完全に制御できます。
+
+## さまざまなタイプのノードビュー
+
 Depending on what you would like to build, node views work a little bit different and can have their verify specific capabilities, but also pitfalls. The main question is: How should your custom node look like?
 
-### Editable text
+構築したいものに応じて、ノードビューの動作は少し異なり、特定の機能を検証することもできますが、落とし穴もあります。主な質問は、カスタムノードはどのように見えるべきかということです。
+
+### 編集可能なテキスト
+
 Yes, node views can have editable text, just like a regular node. That’s simple. The cursor will exactly behave like you would expect it from a regular node. Existing commands work very well with those nodes.
+
+はい、ノードビューには、通常のノードと同じように編集可能なテキストを含めることができます。それは簡単です。カーソルは、通常のノードから期待するのとまったく同じように動作します。既存のコマンドは、これらのノードで非常にうまく機能します。
 
 ```html
 <div class="Prosemirror" contenteditable="true">
@@ -25,10 +36,17 @@ Yes, node views can have editable text, just like a regular node. That’s simpl
 
 That’s how the [`TaskItem`](/api/nodes/task-item) node works.
 
-### Non-editable text
+これがTaskItemノードの動作です。
+
+### 編集不可能なテキスト
+
 Nodes can also have text, which is not editable. The cursor can’t jump into those, but you don’t want that anyway.
 
+ノードには、編集できないテキストを含めることもできます。カーソルはそれらにジャンプすることはできませんが、とにかくそれは望ましくありません。
+
 tiptap adds a `contenteditable="false"` to those by default.
+
+tiptapは、contenteditable="false"デフォルトでそれらにを追加します。
 
 ```html
 <div class="Prosemirror" contenteditable="true">
@@ -40,12 +58,21 @@ tiptap adds a `contenteditable="false"` to those by default.
 
 That’s how you could render mentions, which shouldn’t be editable. Users can add or delete them, but not delete single characters.
 
+これが、編集可能であってはならないメンションをレンダリングする方法です。ユーザーはそれらを追加または削除できますが、単一の文字を削除することはできません。
+
 Statamic uses those for their Bard editor, which renders complex modules inside Tiptap, which can have their own text inputs.
 
-### Mixed content
+Statamicは、Bardエディターにそれらを使用します。これは、独自のテキスト入力を持つことができるTiptap内の複雑なモジュールをレンダリングします。
+
+### 混合コンテンツ
+
 You can even mix non-editable and editable text. That’s great to build complex things, and still use marks like bold and italic inside the editable content.
 
 **BUT**, if there are other elements with non-editable text in your node view, the cursor can jump there. You can improve that with manually adding `contenteditable="false"` to the specific parts of your node view.
+
+編集不可能なテキストと編集可能なテキストを混在させることもできます。これは、複雑なものを作成し、編集可能なコンテンツ内で太字や斜体などのマークを使用するのに最適です。
+
+ただし、ノードビューに編集不可能なテキストを持つ他の要素がある場合、カーソルはそこにジャンプできます。contenteditable="false"ノードビューの特定の部分に手動で追加することで、これを改善できます。
 
 ```html
 <div class="Prosemirror" contenteditable="true">
@@ -62,7 +89,8 @@ You can even mix non-editable and editable text. That’s great to build complex
 </div>
 ```
 
-## Markup
+## マークアップ
+
 But what happens if you [access the editor content](/guide/output)? If you’re working with HTML, you’ll need to tell Tiptap how your node should be serialized.
 
 The editor **does not** export the rendered JavaScript node, and for a lot of use cases you wouldn’t want that anyway.
@@ -71,12 +99,26 @@ Let’s say you have a node view which lets users add a video player and configu
 
 I know, I know, it’s not that easy. Just keep in mind, that you‘re in full control of the rendering inside the editor and of the output.
 
+しかし、エディターのコンテンツにアクセスするとどうなりますか？HTMLを使用している場合は、ノードをシリアル化する方法をTiptapに指示する必要があります。
+
+エディターはレンダリングされたJavaScriptノードをエクスポートしません。多くのユースケースでは、とにかくそれを望まないでしょう。
+
+ユーザーがビデオプレーヤーを追加し、外観（自動再生、コントロールなど）を構成できるノードビューがあるとします。エディターの出力ではなく、エディターでインターフェースがそれを行うようにします。エディターの出力には、おそらくビデオプレーヤーのみが含まれている必要があります。
+
+私は知っています、私は知っています、それはそれほど簡単ではありません。エディター内のレンダリングと出力を完全に制御できることを覚えておいてください。
+
 :::warning What if you store JSON?
 That doesn’t apply to JSON. In JSON, everything is stored as an object. There is no need to configure the “translation” to and from HTML.
 :::
 
-### Render HTML
+JSONを保存するとどうなりますか？
+これはJSONには適用されません。JSONでは、すべてがオブジェクトとして保存されます。HTMLとの間の「変換」を構成する必要はありません。
+
+### HTMLのレンダリング
+
 Okay, you’ve set up your node with an interactive node view and now you want to control the output. Even if you’re node view is pretty complex, the rendered HTML can be simple:
+
+さて、インタラクティブノードビューを使用してノードを設定し、出力を制御したいとします。ノードビューがかなり複雑な場合でも、レンダリングされるHTMLは単純にすることができます。
 
 ```js
 renderHTML({ HTMLAttributes }) {
@@ -88,10 +130,17 @@ renderHTML({ HTMLAttributes }) {
 
 Make sure it’s something distinguishable, so it’s easier to restore the content from the HTML. If you just need something generic markup like a `<div>` consider to add a `data-type="my-custom-node"`.
 
-### Parse HTML
+HTMLからコンテンツを復元するのが簡単になるように、区別できるものであることを確認してください。<div>を追加することを検討するような一般的なマークアップが必要な場合data-type="my-custom-node"。
+
+### HTMLの解析
+
 The same applies to restoring the content. You can configure what markup you expect, that can be something completely unrelated to the node view markup. It just needs to contain all the information you want to restore.
 
 Attributes are automagically restored, if you registered them through [`addAttributes`](/guide/custom-extensions#attributes).
+
+同じことがコンテンツの復元にも当てはまります。期待するマークアップを構成できます。これは、ノードビューのマークアップとはまったく関係がない場合があります。復元したいすべての情報が含まれている必要があります。
+
+を介して登録した場合、属性は自動的に復元されますaddAttributes。
 
 ```js
 // Input: <my-custom-node count="1"></my-custom-node>
@@ -104,7 +153,11 @@ parseHTML() {
 ```
 
 ### Render JavaScript/Vue/React
+
 But what if you want to render your actual JavaScript/Vue/React code? Consider using Tiptap to render your output. Just set the editor to `editable: false` and no one will notice you’re using an editor to render the content. :-)
+
+JavaScript / Vue/Reactをレンダリングする
+しかし、実際のJavaScript / Vue/Reactコードをレンダリングしたい場合はどうでしょうか。Tiptapを使用して出力をレンダリングすることを検討してください。エディターをに設定するだけでeditable: false、エディターを使用してコンテンツをレンダリングしていることに誰も気付かないでしょう。:-)
 
 <!-- ## Reference
 
