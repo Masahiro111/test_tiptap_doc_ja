@@ -6,25 +6,25 @@ tableOfContents: true
 
 ## はじめに
 
-You can store your content as a JSON object or as a good old HTML string. Both work fine. And of course, you can pass both formats to the editor to restore your content. Here is an interactive example, that exports the content as HTML and JSON when the document is changed:
+<!-- You can store your content as a JSON object or as a good old HTML string. Both work fine. And of course, you can pass both formats to the editor to restore your content. Here is an interactive example, that exports the content as HTML and JSON when the document is changed: -->
 
-コンテンツはJSONオブジェクトまたは古き良きHTML文字列として保存できます。どちらも正常に動作します。もちろん、両方の形式をエディターに渡してコンテンツを復元することもできます。これは、ドキュメントが変更されたときにコンテンツをHTMLおよびJSONとしてエクスポートするインタラクティブな例です。
+コンテンツは JSON オブジェクト、または古き良き HTML 文字列として保存できます。どちらも正常に動作します。もちろん、両方の形式をエディターに渡してコンテンツを復元することもできます。これは、ドキュメントが変更されたときにコンテンツを HTML および JSON としてエクスポートするインタラクティブな例です。
 
 ## 書き出し
 
 ### オプション1：JSON
 
-JSON is probably easier to loop through, for example to look for a mention and it’s more like what Tiptap uses under the hood. Anyway, if you want to use JSON to store the content we provide a method to retrieve the content as JSON:
+<!-- JSON is probably easier to loop through, for example to look for a mention and it’s more like what Tiptap uses under the hood. Anyway, if you want to use JSON to store the content we provide a method to retrieve the content as JSON: -->
 
-JSONはおそらく、たとえばメンションを探すためにループするのが簡単で、Tiptapが内部で使用するものに似ています。とにかく、JSONを使用してコンテンツを保存する場合は、コンテンツをJSONとして取得するメソッドを提供します。
+JSON はおそらく、たとえばメンションを探すためにループするのが簡単で、Tiptap が内部で使用するものに似ています。とにかく、JSON を使用してコンテンツを保存する場合は、コンテンツを JSON として取得するメソッドを提供します。
 
 ```js
 const json = editor.getJSON()
 ```
 
-You can store that in your database (or send it to an API) and restore the document initially like that:
+<!-- You can store that in your database (or send it to an API) and restore the document initially like that: -->
 
-これをデータベースに保存して（またはAPIに送信して）、最初は次のようにドキュメントを復元できます。
+これをデータベースに保存して（または API に送信して）、最初は次のようにドキュメントを復元できます。
 
 ```js
 new Editor({
@@ -37,7 +37,7 @@ new Editor({
 })
 ```
 
-Or if you need to wait for something, you can do it later through the editor instance:
+<!-- Or if you need to wait for something, you can do it later through the editor instance: -->
 
 または、何かを待つ必要がある場合は、後でエディターインスタンスを使用してそれを行うことができます。
 
@@ -50,7 +50,7 @@ editor.commands.setContent({
 })
 ```
 
-Here is an interactive example where you can see that in action:
+<!-- Here is an interactive example where you can see that in action: -->
 
 これは、実際の動作を確認できるインタラクティブな例です。
 
@@ -58,15 +58,15 @@ Here is an interactive example where you can see that in action:
 
 ### オプション2：HTML
 
-HTML can be easily rendered in other places, for example in emails and it’s wildly used, so it’s probably easier to switch the editor at some point. Anyway, every editor instance provides a method to get HTML from the current document:
+<!-- HTML can be easily rendered in other places, for example in emails and it’s wildly used, so it’s probably easier to switch the editor at some point. Anyway, every editor instance provides a method to get HTML from the current document: -->
 
-HTMLは他の場所、たとえば電子メールで簡単にレンダリングでき、頻繁に使用されるため、ある時点でエディターを切り替える方がおそらく簡単です。とにかく、すべてのエディターインスタンスは、現在のドキュメントからHTMLを取得するためのメソッドを提供します。
+HTMLは他の場所、たとえば電子メールで簡単にレンダリングでき、頻繁に使用されるため、ある時点でエディターを切り替える方がおそらく、より簡単でしょう。すべてのエディターインスタンスは、現在のドキュメントからHTMLを取得するためのメソッドを提供します。
 
 ```js
 const html = editor.getHTML()
 ```
 
-This can then be used to restore the document initially:
+<!-- This can then be used to restore the document initially: -->
 
 これを使用して、最初にドキュメントを復元できます。
 
@@ -76,15 +76,15 @@ new Editor({
 })
 ```
 
-Or if you want to restore the content later (e. g. after an API call has finished), you can do that too:
+<!-- Or if you want to restore the content later (e. g. after an API call has finished), you can do that too: -->
 
-または、後で（API呼び出しが終了した後などに）コンテンツを復元する場合は、次のようにすることもできます。
+後で（API呼び出しが終了した後などに）コンテンツを復元する場合は、次のようにすることもできます。
 
 ```js
 editor.commands.setContent(`<p>Example Text</p>`)
 ```
 
-Use this interactive example to fiddle around:
+<!-- Use this interactive example to fiddle around: -->
 
 このインタラクティブな例を使用して、いじくりまわします。
 
@@ -100,49 +100,48 @@ Sure, you can import existing JSON documents to get started and get a JSON out o
 
 That said, it’s amazing and we’re about to provide an amazing backend, that makes all that a breeze.
 
-私たちのエディターはY.jsを一流にサポートしています。これは、リアルタイムコラボレーション、オフライン編集、デバイス間の同期などの機能を追加するのに最適です。
+私たちのエディターは `Y.js` をサポートしています。これは、リアルタイムコラボレーション、オフライン編集、デバイス間の同期などの機能を追加するのに最適です。
 
-内部的には、Y.jsはすべての変更の履歴を保存します。これは、ブラウザ、サーバー、接続されている他のクライアントとの同期、またはUSBスティックで行うことができます。ただし、Y.jsにはこれらの保存された変更が必要であることを知っておくことが重要です。単純なJSONドキュメントでは、変更をマージするのに十分ではありません。
+内部的には、`Y.js` はすべての変更の履歴を保存します。これは、ブラウザ、サーバー、接続されている他のクライアントとの同期、または USB スティックで行うことができます。ただし、Y.js にはこれらの保存された変更が必要であることを知っておくことが重要です。単純な JSON ドキュメントでは、変更をマージするのに十分ではありません。
 
-もちろん、既存のJSONドキュメントをインポートして開始し、Y.jsからJSONを取得することはできますが、それはインポート/エクスポート形式に似ています。それはあなたの単一の情報源ではありません。上記のユースケースの1つにY.jsを追加する場合は、これを考慮することが重要です。
+もちろん、既存の JSON ドキュメントをインポートして開始し、`Y.js` から JSON を取得することはできますが、それはインポート/エクスポート形式に似ています。それはあなたの単一の情報源ではありません。上記のユースケースの1つに `Y.js` を追加する場合は、これを考慮することが重要です。
 
 とは言うものの、それは驚くべきことであり、私たちは驚くべきバックエンドを提供しようとしています。
 
-### Not an option: Markdown
+### Markdown はサポートしていません
 
-オプションではありません：値下げ
+<!-- Unfortunately, **tiptap doesn’t support Markdown as an input or output format**. We considered to add support for it, but those are the reasons why we decided to not do it: -->
 
-Unfortunately, **tiptap doesn’t support Markdown as an input or output format**. We considered to add support for it, but those are the reasons why we decided to not do it:
+残念ながら、tiptap は入力または出力形式として Markdown をサポートしていません。サポートを追加することを検討しましたが、それを行わないことにした理由は次のとおりです。
 
-残念ながら、tiptapは入力または出力形式としてMarkdownをサポートしていません。サポートを追加することを検討しましたが、それを行わないことにした理由は次のとおりです。
-
+<!-- 
 * Both, HTML and JSON, can have deeply nested structures, Markdown is flat.
 * Markdown standards vary.
 * Tiptap’s strength is customization, that doesn’t work very well with Markdown.
-* There are enough packages to convert HTML to Markdown and vice-versa.
+* There are enough packages to convert HTML to Markdown and vice-versa. -->
 
-HTMLとJSONはどちらも、深くネストされた構造を持つことができ、Markdownはフラットです。
-値下げ基準は異なります。
-Tiptapの強みはカスタマイズであり、Markdownではうまく機能しません。
-HTMLをMarkdownに、またはその逆に変換するのに十分なパッケージがあります。
+* HTML と JSON はどちらも、深くネストされた構造を持つことができ、Markdown はフラットです。
+* 値下げ基準は異なります。
+* Tiptap の強みはカスタマイズであり、Markdown ではうまく機能しません。
+* HTML を Markdown に、またはその逆に変換するのに十分なパッケージがあります。
 
-You should really consider to work with HTML or JSON to store your content, they are perfectly fine for most use cases.
+<!-- You should really consider to work with HTML or JSON to store your content, they are perfectly fine for most use cases. -->
 
-HTMLまたはJSONを使用してコンテンツを保存することを検討する必要があります。これらは、ほとんどのユースケースで完全に問題ありません。
+HTML または JSON を使用してコンテンツを保存することを検討する必要があります。これらは、ほとんどのユースケースで完全に問題ありません。
 
-If you still think you need Markdown, ProseMirror has an [example on how to deal with Markdown](https://prosemirror.net/examples/markdown/), [Nextcloud Text](https://github.com/nextcloud/text) uses Tiptap 1 to work with Markdown. Maybe you can learn from them. Or if you are looking for a really good Markdown editor, try [CodeMirror](https://codemirror.net/).
+<!-- If you still think you need Markdown, ProseMirror has an [example on how to deal with Markdown](https://prosemirror.net/examples/markdown/), [Nextcloud Text](https://github.com/nextcloud/text) uses Tiptap 1 to work with Markdown. Maybe you can learn from them. Or if you are looking for a really good Markdown editor, try [CodeMirror](https://codemirror.net/). -->
 
-それでもMarkdownが必要だと思われる場合は、ProseMirrorにMarkdownの処理方法の例があり、NextcloudTextはTiptap1を使用してMarkdownを操作します。多分あなたはそれらから学ぶことができます。または、本当に優れたMarkdownエディターを探している場合は、CodeMirrorを試してください。
+それでも Markdown が必要だと思われる場合は、ProseMirror に Markdown の処理方法の例があり、NextcloudText は Tiptap1 を使用して Markdown を操作します。多分あなたはそれらから学ぶことができます。または、本当に優れた Markdown エディターを探している場合は、CodeMirror を試してください。
 
 That said, Tiptap does support [Markdown shortcuts](/examples/markdown-shortcuts) to format your content. Also you’re free to let your content look like Markdown, for example add a `#` before an `<h1>` with CSS.
 
-そうは言っても、TiptapはコンテンツをフォーマットするためのMarkdownショートカットをサポートしています。また、コンテンツをMarkdownのように見せることもできます。たとえば、CSSを使用して#前にaを追加します。<h1>
+そうは言っても、Tiptap はコンテンツをフォーマットするためのMarkdown ショートカットをサポートしています。また、コンテンツをMarkdown のように見せることもできます。たとえば、`<h1>` の前に `#` を記入します。
 
 ## 変化を聞く
 
-If you want to continuously store the updated content while people write, you can [hook into events](/api/events). Here is an example how that could look like:
+<!-- If you want to continuously store the updated content while people write, you can [hook into events](/api/events). Here is an example how that could look like: -->
 
-人々が書いている間、更新されたコンテンツを継続的に保存したい場合は、イベントにフックすることができます。これがどのように見えるかの例です：
+人々が書いている間、更新されたコンテンツを継続的に保存したい場合は、[イベントにフックする](/api/events) ことができます。これがどのように見えるかの例です。
 
 ```js
 const editor = new Editor({
@@ -159,7 +158,7 @@ const editor = new Editor({
 
 ## レンダリング
 
-### Option 1: Read-only instance of Tiptap
+### オプション1：Tiptapの読み取り専用インスタンス
 
 To render the saved content, set the editor to read-only. That’s how you can achieve the exact same rendering as it’s in the editor, without duplicating your CSS and other code.
 
